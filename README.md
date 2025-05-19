@@ -1,38 +1,42 @@
-# Hello Node!
+# Hello website!
 
-This project includes a Node.js server script and a web page that connects to it. The front-end page presents a form the visitor can use to submit a color name, sending the submitted value to the back-end API running on the server. The server returns info to the page that allows it to update the display with the chosen color. 🎨
+This is a basic HTML starter project you can build on however you like. No need to save. While you develop your site, your changes will happen ✨ immediately in the preview window. On the left you'll see the files that make up your site, including HTML, JavaScript, and CSS. You can upload assets like images or audio in `assets`. The rest is up to you and your imagination. 🦄
 
-[Node.js](https://nodejs.org/en/about/) is a popular runtime that lets you run server-side JavaScript. This project uses the [Fastify](https://www.fastify.io/) framework and explores basic templating with [Handlebars](https://handlebarsjs.com/).
-
-_Last updated: 14 August 2023_
-
-## Prerequisites
-
-You'll get best use out of this project if you're familiar with basic JavaScript. If you've written JavaScript for client-side web pages this is a little different because it uses server-side JS, but the syntax is the same!
+_Last updated: 28 Feb 2023_
 
 ## What's in this project?
 
-← `README.md`: That’s this file, where you can tell people what your cool website does and how you built it.
+← `README.md`: That's this file, where you can tell people what your cool website does and how you built it.
 
-← `public/style.css`: The styling rules for the pages in your site.
+← `index.html`: This is the main web page for your site. The HTML defines the structure and content of the page using _elements_. You'll see references in the HTML to the JS and CSS files. Try clicking the image in the center of the page!
 
-← `server.js`: The **Node.js** server script for your new site. The JavaScript defines the endpoints in the site back-end, one to return the homepage and one to update with the submitted color. Each one sends data to a Handlebars template which builds these parameter values into the web page the visitor sees.
+← `style.css`: CSS files add styling rules to your content. The CSS applies styles to the elements in your HTML page. The style rules also make the image move when you click it.
 
-← `package.json`: The NPM packages for your project's dependencies.
+← `script.js`: If you're feeling fancy you can add interactivity to your site with JavaScript. The code in the JavaScript file runs when the page loads, and when the visitor clicks the button you can add using the code in the TODO.
 
-← `src/`: This folder holds the site template along with some basic data files.
-
-← `src/pages/index.hbs`: This is the main page template for your site. The template receives parameters from the server script, which it includes in the page HTML. The page sends the user submitted color value in the body of a request, or as a query parameter to choose a random color.
-
-← `src/colors.json`: A collection of CSS color names. We use this in the server script to pick a random color, and to match searches against color names.
-
-← `src/seo.json`: When you're ready to share your new site or add a custom domain, change SEO/meta settings in here.
+Open each file and check out the comments (in gray) for more info.
 
 ## Try this next 🏗️
 
 Take a look in `TODO.md` for next steps you can try out in your new site!
 
-___Want a minimal version of this project to build your own Node.js app? Check out [Blank Node](https://glitch.com/edit/#!/remix/glitch-blank-node)!___
+___Want a minimal version of this project to build your own website? Check out [Blank Website](https://glitch.com/edit/#!/remix/glitch-blank-website)!___
+
+## Ready to share your site?
+
+Add these meta tags for SEO and social sharing between your page `<head></head>` tags, changing the values for your site:
+
+```
+<link rel="canonical" href="https://glitch-hello-website.glitch.me/" />
+<meta name="description" content="A simple website, built with Glitch. Remix it to get your own."/>
+<meta name="robots" content="index,follow" />
+<meta property="og:title" content="Hello World!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://glitch-hello-website.glitch.me/" />
+<meta property="og:description" content="A simple website, built with Glitch. Remix it to get your own."/>
+<meta property="og:image" content="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2Fhello-website-social.png?v=1616712748147"/>
+<meta name="twitter:card" content="summary" />
+```
 
 ![Glitch](https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2FLogo_Color.svg?v=1602781328576)
 

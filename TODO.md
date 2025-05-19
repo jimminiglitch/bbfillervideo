@@ -1,22 +1,19 @@
 # TODO 🚧
 
-Your new site is all yours so it doesn't matter if you break it! Try editing the code.
+Your new site is all yours so it doesn't matter if you break it! Try editing the code–add a button element that moves when the user clicks it.
 
-Let's keep track of the submitted favorites using an array. First add this code near the top of `server.js` (where the comment says `ADD FAVORITES ARRAY VARIABLE`):
+In `index.html`, add this code on the line after the comment with `ADD BUTTON HERE` in it (you can copy and paste the button element HTML):
 
-```js
-const favorites = [];
+```html
+<button>
+    Click me!
+</button>
 ```
 
-In the `POST` route, inside the `if(color)` block, add this code to save the submitted value to the array, and write it to the console:
+Look at the page to see the button. Click it!
 
-```js
-favorites.push(color);
-console.log(favorites);
-```
-
-Click __Tools__ > __Logs__ at the bottom of Glitch to see the log statement in action when you submit new colors through the form.
+Open `script.js` to see the script that makes the button move.
 
 ## Keep going! 🚀
 
-Clearly this is not a robust data storage approach and won't persist for long! Your Node apps can use a variety of databases, like [SQLite](https://glitch.com/~glitch-hello-sqlite) and [Airtable](https://glitch.com/~glitch-hello-airtable).
+Try adding more properties to the CSS `dipped` style for the button to see how the changes appear on click.

@@ -15,56 +15,56 @@ document.addEventListener("DOMContentLoaded", () => {
     future: {
       type: "youtube",
       id: "bySOMahBN7g",
-      poster: "https://img.youtube.com/vi/bySOMahBN7g/hqdefault.jpg",
+      poster: "https://cdn.glitch.global/25331b85-e206-4347-93a8-666983818ff8/VaporTV.png?v=1747403426893",
       title: "Future Unknown",
       description: "",
     },
     critter: {
       type: "youtube",
       id: "i8h72QCGTWE",
-      poster: "https://img.youtube.com/vi/i8h72QCGTWE/hqdefault.jpg",
+      poster: "https://cdn.glitch.global/25331b85-e206-4347-93a8-666983818ff8/VaporTV.png?v=1747403426893",
       title: "Curious Critter POV",
       description: "S.E.P. Challenge Video 1",
     },
     Joyful: {
       type: "youtube",
       id: "erZBbUa4Rac",
-      poster: "https://img.youtube.com/vi/erZBbUa4Rac/hqdefault.jpg",
+      poster: "https://cdn.glitch.global/25331b85-e206-4347-93a8-666983818ff8/VaporTV.png?v=1747403426893",
       title: "A Joyful and Meaningful Life",
       description: "Phantom of the Oprah pt. 3",
     },
     Abstract: {
       type: "youtube",
       id: "ieB-dxSihuo",
-      poster: "https://img.youtube.com/vi/ieB-dxSihuo/hqdefault.jpg",
+      poster: "https://cdn.glitch.global/25331b85-e206-4347-93a8-666983818ff8/VaporTV.png?v=1747403426893",
       title: "Abstract",
       description: "S.E.P. Challenge Video 6",
     },
     Papaz: {
       type: "youtube",
       id: "fJE_uqm8NOU",
-      poster: "https://img.youtube.com/vi/fJE_uqm8NOU/hqdefault.jpg",
+      poster: "https://cdn.glitch.global/25331b85-e206-4347-93a8-666983818ff8/VaporTV.png?v=1747403426893",
       title: "Papaz",
       description: "S.E.P. Challenge Video 2",
     },
     weight: {
       type: "vimeo",
       id: "1082536082",
-      poster: "https://cdn.glitch.global/09e9ba26-fd4e-41f2-88c1-651c3d32a01a/VaporTV.png?v=1746411817932",
+      poster: "https://cdn.glitch.global/25331b85-e206-4347-93a8-666983818ff8/VaporTV.png?v=1747403426893",
       title: "The Weight of Care",
       description: "An experimental documentary on the emotional weight of private care medicine in the USA.",
     },
     birdbrian: {
       type: "youtube",
       id: "6l2BltEBLt0",
-      poster: "https://img.youtube.com/vi/6l2BltEBLt0/hqdefault.jpg",
+      poster: "https://cdn.glitch.global/25331b85-e206-4347-93a8-666983818ff8/VaporTV.png?v=1747403426893",
       title: "Birding with Brian",
       description: "A documentary film about Birding with Brian.",
     },
     clydecup: {
       type: "youtube",
       id: "16N_xqMwHDg",
-      poster: "https://img.youtube.com/vi/16N_xqMwHDg/hqdefault.jpg",
+      poster: "https://cdn.glitch.global/25331b85-e206-4347-93a8-666983818ff8/VaporTV.png?v=1747403426893",
       title: "The Illustrious Clyde Cup",
       description: "",
     },
@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Function to open windows
   window.openWindow = (id) => {
+    console.log("Opening window:", id)
     resetVideoWindow(id)
     const window = document.getElementById(id)
     if (window) {
@@ -86,14 +87,40 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Function to close windows
+  window.closeWindow = (id) => {
+    console.log("Closing window:", id)
+    const window = document.getElementById(id)
+    if (window) {
+      window.style.display = "none"
+    }
+  }
+
   // ───────────────────────────────────────────────────────────────────────────────
   // resetVideoWindow: remove old iframes/loading spinners & restore poster overlay
   // ───────────────────────────────────────────────────────────────────────────────
   function resetVideoWindow(windowId) {
+    console.log("Resetting video window:", windowId)
     const win = document.getElementById(windowId)
-    if (!win) return
-    const container = win.querySelector(".video-container")
-    if (!container) return
+    if (!win) {
+      console.error(`Window not found: ${windowId}`)
+      return
+    }
+
+    let container = win.querySelector(".video-container")
+    if (!container) {
+      console.log("Creating new video container for:", windowId)
+      const windowContent = win.querySelector(".window-content")
+      if (!windowContent) {
+        console.error(`Window content not found for: ${windowId}`)
+        return
+      }
+
+      // Create container if it doesn't exist
+      container = document.createElement("div")
+      container.className = "video-container"
+      windowContent.appendChild(container)
+    }
 
     // remove any old loading indicators
     container.querySelectorAll(".loading-indicator").forEach((el) => el.remove())
@@ -279,6 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const poster = win.querySelector(".poster-overlay")
         if (poster) poster.style.display = "flex"
         activeVideoPlayers.delete(windowId)
+        win.style.display = "none"
       })
     }
   })
@@ -303,6 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".desktop-icon").forEach((icon) => {
     icon.addEventListener("click", function () {
       const windowId = this.getAttribute("data-window")
+      console.log("Icon clicked for window:", windowId)
       window.openWindow(windowId)
     })
   })
@@ -326,7 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.style.width = "100%"
         window.style.height = "calc(100% - 36px)" // Adjust for taskbar
       } else {
-        const prevStyle = window.dataset.prevStyle.split(";")
+        const prevStyle = window.dataset.prevStyle?.split(";") || []
         prevStyle.forEach((style) => {
           if (style) {
             const [prop, val] = style.split(":")
@@ -342,13 +371,13 @@ document.addEventListener("DOMContentLoaded", () => {
     header.addEventListener("mousedown", function (e) {
       if (e.target.tagName === "BUTTON") return
 
-      const window = this.closest(".popup-window")
-      if (window.classList.contains("maximized")) return
+      const window = this.closest(".popup-window") || this.closest(".folder-window")
+      if (!window || window.classList.contains("maximized")) return
 
       window.classList.add("dragging")
 
       // Bring to front
-      document.querySelectorAll(".popup-window").forEach((w) => {
+      document.querySelectorAll(".popup-window, .folder-window").forEach((w) => {
         w.style.zIndex = w === window ? "100" : "10"
       })
 
@@ -380,7 +409,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation()
 
       const window = this.closest(".popup-window")
-      if (window.classList.contains("maximized")) return
+      if (!window || window.classList.contains("maximized")) return
 
       window.classList.add("resizing")
 

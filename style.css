@@ -96,6 +96,7 @@ body {
   -webkit-user-select: none;
   transition: transform 0.2s ease, filter 0.2s ease;
   outline: none;
+  z-index: 5;
 }
 
 .desktop-icon:hover {
@@ -142,24 +143,6 @@ body {
   text-align: center;
 }
 
-/* Selection Rectangle */
-#selection-rect {
-  position: absolute;
-  border: 2px dashed;
-  border-image: linear-gradient(
-      45deg,
-      var(--neon-pink),
-      var(--neon-yellow),
-      var(--neon-green),
-      var(--neon-cyan),
-      var(--neon-purple)
-    )
-    1;
-  background: rgba(201, 0, 167, 0.132);
-  pointer-events: none;
-  z-index: 999;
-}
-
 /* Popup Window Styles */
 .popup-window {
   position: absolute;
@@ -179,10 +162,6 @@ body {
   z-index: var(--z-window);
   will-change: transform, opacity;
   transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.popup-window.active {
-  display: flex;
 }
 
 .window-header {
@@ -240,6 +219,7 @@ body {
   flex: 1;
   overflow: auto;
   position: relative;
+  background-color: var(--bg-color);
 }
 
 /* Dragging and resizing states */
@@ -387,4 +367,14 @@ body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* Make sure popup windows are visible */
+.popup-window {
+  display: none;
+}
+
+.popup-window.active,
+.popup-window[style*="display: flex"] {
+  display: flex !important;
 }
